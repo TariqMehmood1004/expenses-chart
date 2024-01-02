@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Expenses chart component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    :root {
+      --primary-color: #F7E9DC;
+      --secondary-color: #EC755D;
+      --light-color: #fff;
+      --black-color: #000;
+      --pink-color: #B4DFE4;
+      --secondary-light-color: #FF9B87;
+      --font-sans-serif: sans-serif;
+      --head-color: #2D1B0F;
+      --prices-color: #392115;
+      --text-color: #C6BEB5;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-sans-serif);
+    }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    body, html {
+      width: 100%;
+      height: 100vh;
+      background-color: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .box-container {
+      width: 32rem;
+      height: 100% auto;
+      /* background-color: var(--light-color); */
+      border-radius: 1rem;
+      padding: .1rem .5rem;
+      margin: 1rem 0rem;
+      position: relative;
+    }
+    .header {
+      width: 100% auto;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--secondary-color);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    .balance {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      color: white;
+    }
+
+    .balance span {
+      margin: .5rem 0rem;
+      font-weight: 300;
+      font-size: 14px;
+    }
+
+    .balance h2 {
+      font-weight: 600;
+    }
+
+    .circles {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .circle {
+      width: 3rem;
+      height: 3rem;
+      background-color: var(--black-color);
+      border-radius: 50%;
+      position: absolute;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .c-1 {
+      position: absolute;
+      right: 2.5rem;
+      z-index: 1;
+      background-color: transparent;
+      border: 2px solid var(--light-color);
+    }
+
+    .box-2 {
+      background-color: var(--light-color);
+      padding: 1rem 1.67rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+    }
+    .box-2 h2 {
+      font-weight: 600;
+      color: var(--head-color);
+      padding: .77rem 0rem;
+    }
+
+    .bars-container {
+      width: 100%;
+      height: 12rem;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--text-color);
+      margin: 2.5rem 0rem .5rem 0rem;
+    }
+
+    .bar {
+      position: relative;
+      width: 2.5rem;
+      height: 100%;
+      margin: .5rem;
+      padding: .5rem 0rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: center;
+    }
+    .up-bar {
+      width: 100%;
+      border-radius: .4rem;
+      height: 1000%;
+      background-color: var(--secondary-color);
+    }
+
+    .bar span {
+      color: var(--text-color);
+      font-size: 12px;
+      font-weight: 300;
+      margin: .2rem 0rem;
+    }
+  
+    .bar .prices {
+    background: var(--prices-color);
+    padding: .5rem .5rem;
+    border-radius: .3rem;
+    color: var(--light-color);
+    position: absolute;
+    top: -2rem;
+  }
+
+    .bar-1 {
+      height: 30%;
+    }
+
+    .bar-2 {
+      height: 50%;
+    }
+
+    .bar-3 {
+      height: 100%;
+      background: var(--pink-color);
+    }
+    .bar-4 {
+      height: 45%;
+    }
+    .bar-5 {
+      height: 35%;
+    }
+
+    .bar-6 {
+      height: 60%;
+    }
+    .bar-7 {
+      height: 40%;
+    }
+    
+    .bar .p-2 {
+      top: 2.5rem;
+      position: absolute;
+    }
+
+
+    footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 1rem 0rem;
+    }
+    footer span {
+      font-size: 14px;
+      color: var(--text-color);
+      font-weight: 300;
+    }
+    footer h1 {
+      color: var(--head-color);
+      font-weight: 600;
+    }
+    .footer-end {
+      text-align: end;
+    }
+    .footer-end span {
+      font-weight: 600;
+      color: var(--head-color);
+      font-size: 14px;
+    }
+    .footer-end p {
+      color: var(--text-color);
+      font-size: 16px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box-container">
+  <div class="header">
+    <div class="balance">
+      <span>My balance</span>
+      <h2>$921.48</h2>
+    </div>
+
+    <div class="circles side">
+      <div class="circle c-1"></div>
+      <div class="circle c-2"></div>
+    </div>
+  </div>
+
+  <div class="box-2">
+    <h2>Spending - Last 7 days</h3>
+
+<div class="bars-container">
+  <div class="bar">
+    <div class="up-bar bar-1"></div>
+    <span>mon</span>
+  </div>
+
+  <div class="bar">
+    <div class="up-bar bar-2"></div>
+    <span>tue</span>
+  </div>
+
+  <div class="bar">
+    <span class="prices">$52.36</span>
+    <div class="up-bar bar-3"></div>
+    <span>wed</span>
+  </div>
+
+  <div class="bar">
+    <span class="prices p-2">$31.07</span>
+    <div class="up-bar bar-4"></div>
+    <span>thu</span>
+  </div>
+
+  <div class="bar">
+    <div class="up-bar bar-5"></div>
+    <span>fri</span>
+  </div>
+
+  <div class="bar">
+    <div class="up-bar bar-6"></div>
+    <span>sat</span>
+  </div>
+
+  <div class="bar">
+    <div class="up-bar bar-7"></div>
+    <span>sun</span>
+  </div>
+
+</div>
+
+
+<footer>
+  <div>
+    <span>Total this month</span>
+  <h1>$478.33</h1>
+  </div>
+
+  <div class="footer-end">
+    <span>+2.4%</span>
+  <p>from last month</p>
+  </div>
+</footer>
+  </div>
+
+</div>
+  
+  <div class="attribution">
+    Challenge by 
+    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://www.frontendmentor.io/profile/TariqMehmood1004">Tariq Mehmood</a>.
+  </div>
+</body>
+</html>
